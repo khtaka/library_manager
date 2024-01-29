@@ -22,10 +22,12 @@ public class LibraryService {
     public List<Library> findAll() {
         return this.libraryRepository.findAll();
     }
+ // LibraryService クラス
     public Library getLibraryById(Integer id) {
-        Optional<Library> library = this.libraryRepository.findById(id);
-        return library.orElse(null);
+        Optional<Library> libraryOptional = this.libraryRepository.findById(id);
+        return libraryOptional.orElse(null);
     }
+
 
 
 }

@@ -29,7 +29,7 @@ public class LibraryController {
         model.addAttribute("libraries", libraries);
         return "library/index";
     }
-    @GetMapping("/library/borrow")
+    @GetMapping("/borrow")
     public String borrowingForm(@RequestParam("id") Integer id, Model model) {
         // 書籍IDに該当する書籍情報を取得
         Library library = libraryService.getLibraryById(id);
