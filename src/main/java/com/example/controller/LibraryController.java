@@ -35,7 +35,7 @@ public class LibraryController {
         Library library = libraryService.getLibraryById(id);
 
         // モデルに書籍情報をセット
-        model.addAttribute("library", library);
+        model.addAttribute("libraries", library);
 
         // borrowingForm.html テンプレートを表示
         return "library/borrowingForm";

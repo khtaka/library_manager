@@ -25,7 +25,10 @@ public class User {
 
     @Column(name = "password")  
     private String password;
-
+    
+    public Integer getUserId() {
+    	return user.getId();
+    }
 
     public String getName() {
         return this.name;
