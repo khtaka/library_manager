@@ -3,64 +3,62 @@ package com.example.service;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.entity.User;
 
-public class LoginUser implements UserDetails {
 
-    // Userオブジェクト(Entityクラス)
+
+public class LoginUser implements UserDetails {
+// UserDetails：認証されたユーザーの詳細情報を提供する
+
     private final User user;
 
-    // コンストラクタ
     public LoginUser(User user) {
         this.user = user;
     }
 
-    // Entityクラスである、Userオブジェクトのゲッター
     public User getUser() {
         return this.user;
     }
 
-    // ユーザーの認証に使用されるパスワードを返却する
     @Override
     public String getPassword() {
         return this.user.getPassword();
     }
 
-    // ユーザーの認証に使用されるユーザー名を返却する
     @Override
     public String getUsername() {
         return this.user.getEmail();
     }
+    
+    public Integer getUserId() {
+        return user.getId(); 
+    }
+    
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+    	return AuthorityUtils.NO_AUTHORITIES;	
+    }
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
-	}
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
-	}
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
-	}
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
