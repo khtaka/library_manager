@@ -23,7 +23,7 @@
                         </div>
                         <div class="content">
                             <form action="/library/borrow" method="post">
-                                <div class="book-title" th:text="${library.title}"></div>
+                                <div class="book-title" th:text="${library.getName()}"></div>
                                 <hr>
                                 <div class="form-group">
                                     <label>return date</label>
