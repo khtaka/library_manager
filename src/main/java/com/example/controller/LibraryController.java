@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.entity.Library;
 import com.example.service.LibraryService;
+import com.example.service.LoginUser;
 
 @Controller
 @RequestMapping("library")
@@ -47,10 +48,11 @@ public class LibraryController {
     public String borrow(
             @RequestParam("id") Integer id,
             @RequestParam("return_due_date") String returnDueDate,
-            @AuthenticationPrincipal Integer loginUser,
+            @AuthenticationPrincipal LoginUser loginUser,
             RedirectAttributes redirectAttributes) {
 
-    	this.libraryService.insert(id,loginUser,returnDueDate);
+    	libraryService.borrow(id, loginUser, returnDueDate);
+
 
         // Redirect to the library page
         redirectAttributes.addFlashAttribute("message", "Book borrowed successfully!");

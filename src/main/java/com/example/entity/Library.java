@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.example.service.LoginUser;
+
 @Entity
 @Table(name = "libraries")
 public class Library {
@@ -38,6 +40,11 @@ public class Library {
     }
     @Column(name = "user_id")
     private Integer userId;
+
+	public void setUserId(LoginUser loginUser) {
+		
+		
+	}
 
     
 }

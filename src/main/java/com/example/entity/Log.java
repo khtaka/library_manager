@@ -1,6 +1,7 @@
 package com.example.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.example.service.LoginUser;
 
 @Entity
 @Table(name = "logs")
@@ -38,6 +41,31 @@ public class Log {
 
     @Column(name = "return_due_date")
     private LocalDate returnDueDate;
+
+	public void setLibraryId(Integer id2) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+
+	public void setUserId(LoginUser loginUser) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+
+	public void setRentDate(LocalDateTime now) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+
+	public void setReturnDueDate(LocalDateTime localDateTime) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+
+	public void setReturnDate(Object object) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
 
     // Getters and setters
 }
