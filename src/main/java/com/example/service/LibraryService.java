@@ -39,14 +39,14 @@ public class LibraryService {
         Library library = libraryRepository.findById(id).orElse(null);
          {
             // ユーザーIDを上書き
-            library.setUserId(loginUser);
+            library.setUserId(loginUser.getUser().getId());
             // 書籍情報を更新
             libraryRepository.save(library);
 
             // 新しいログを生成
             Log log = new Log();
             log.setLibraryId(library.getId());
-            log.setUserId(loginUser);
+            log.setUserId(loginUser.getUser().getId());
             log.setRentDate(LocalDateTime.now());
             // 返却予定日のフォーマットを適用してパース
             log.setReturnDueDate(LocalDateTime.parse(returnDueDate + "T00:00:00"));

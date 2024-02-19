@@ -1,6 +1,5 @@
 package com.example.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -13,8 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.example.service.LoginUser;
-
 @Entity
 @Table(name = "logs")
 public class Log {
@@ -23,49 +20,76 @@ public class Log {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LOG_ID_SEQ")
     @SequenceGenerator(name = "LOG_ID_SEQ", sequenceName = "LOG_ID_SEQ", allocationSize = 1)
     @Column(name = "id")
-    private Long id;
+	private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "library_id")
-    private Library library;
+	@Column(name = "library_id")
+	private Integer libraryId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+	@Column(name = "user_id")
+	private Integer userId;
 
-    @Column(name = "rent_date")
-    private LocalDate rentDate;
+	@Column(name = "rent_date")
+	private LocalDateTime rentDate;
 
-    @Column(name = "return_date")
-    private LocalDate returnDate;
+	@Column(name = "return_date")
+	private LocalDateTime returnDate;
 
-    @Column(name = "return_due_date")
-    private LocalDate returnDueDate;
+	@Column(name = "return_due_date")
+	private LocalDateTime returnDueDate;
 
-	public void setLibraryId(Integer id2) {
-		// TODO 自動生成されたメソッド・スタブ
-		
+	@ManyToOne
+	@JoinColumn(insertable = false, updatable = false)
+	private Library library;
+
+	public Integer getId() {
+		return id;
 	}
 
-	public void setUserId(LoginUser loginUser) {
-		// TODO 自動生成されたメソッド・スタブ
-		
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public void setRentDate(LocalDateTime now) {
-		// TODO 自動生成されたメソッド・スタブ
-		
+	public Integer getLibraryId() {
+		return libraryId;
 	}
 
-	public void setReturnDueDate(LocalDateTime localDateTime) {
-		// TODO 自動生成されたメソッド・スタブ
-		
+	public void setLibraryId(Integer libraryId) {
+		this.libraryId = libraryId;
 	}
 
-	public void setReturnDate(Object object) {
-		// TODO 自動生成されたメソッド・スタブ
-		
+	public Integer getUserId() {
+		return userId;
 	}
 
-    // Getters and setters
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public LocalDateTime getRentDate() {
+		return rentDate;
+	}
+
+	public void setRentDate(LocalDateTime rentDate) {
+		this.rentDate = rentDate;
+	}
+
+	public LocalDateTime getReturnDate() {
+		return returnDate;
+	}
+
+	public void setReturnDate(LocalDateTime returnDate) {
+		this.returnDate = returnDate;
+	}
+
+	public LocalDateTime getReturnDueDate() {
+		return returnDueDate;
+	}
+
+	public void setReturnDueDate(LocalDateTime returnDueDate) {
+		this.returnDueDate = returnDueDate;
+	}
+
+	public Library getLibrary() {
+		return library;
+	}
 }
