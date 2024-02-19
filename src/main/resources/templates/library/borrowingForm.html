@@ -22,7 +22,7 @@
                             <h4 class="title">Borrow book data</h4>
                         </div>
                         <div class="content">
-                            <form action="/library/borrow" method="post">
+                            <form th:action="@{/library/borrow}" method="post">
                                 <div class="book-title" th:text="${library.getName()}"></div>
                                 <hr>
                                 <div class="form-group">

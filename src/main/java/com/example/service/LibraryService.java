@@ -37,7 +37,7 @@ public class LibraryService {
     public void borrow(Integer id, LoginUser loginUser, String returnDueDate) {
         // 書籍情報を取得
         Library library = libraryRepository.findById(id).orElse(null);
-        if (library != null) {
+         {
             // ユーザーIDを上書き
             library.setUserId(loginUser);
             // 書籍情報を更新
