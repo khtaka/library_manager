@@ -30,16 +30,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-						        <tr th:each="library : ${libraries}" class="">
-            							<td th:text="${library.id}">書籍ID</td>
-            							<td th:text="${library.name}">書籍名</td>
-            						<td>					
-                						<form action="/library/borrow" method="get">
-                    					<input type="hidden" name="bookId" th:value="${library.id}">
-                    					<input type="submit" value="borrow" class="btn btn-info">
-						                </form>
-						            </td>
-						        </tr>
+							        <tr th:each="library : ${libraries}" class="">
+	            							<td th:text="${library.id}">書籍ID</td>
+	            							<td th:text="${library.name}">書籍名</td>
+	            						<td>					
+	                						<form action="/library/borrow" method="get">
+	                    					<input type="hidden" name="bookId" th:value="${library.id}">
+	                    					<input type="submit" value="borrow" class="btn btn-info">
+							                </form>
+							            </td>
+							        </tr>
                                 </tbody>
                             </table>
                         </div>
