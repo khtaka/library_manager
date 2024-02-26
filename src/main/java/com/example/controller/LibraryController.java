@@ -1,6 +1,5 @@
 package com.example.controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.entity.Library;
-import com.example.entity.Log;
 import com.example.repository.LibraryRepository;
 import com.example.repository.LogRepository;
 import com.example.service.LibraryService;
@@ -59,7 +57,7 @@ public class LibraryController {
             @AuthenticationPrincipal LoginUser loginUser
             ) {
 
-    	libraryService.borrow(id, loginUser, returnDueDate);
+    	this.libraryService.borrow(id, loginUser, returnDueDate);
 
 
         // Redirect to the library page
@@ -71,23 +69,10 @@ public class LibraryController {
                              @AuthenticationPrincipal LoginUser loginUser
                              ) {
        
-        // 書籍IDを利用して書籍情報を取得
-        Library library = libraryRepository.findById(id).orElse(null);
+    	this.libraryService.returnBook(id,loginUser);
     
-        if (library != null) {
-        // 書籍情報のUSER_IDを0に設定して更新
-        library.setUserId(0);
-        libraryRepository.save(library);
-
-        // Logsモデルを利用して更新処理を行う
-        Log log = logRepository.findFirstByLibraryIdAndUserIdOrderByRentDateDesc(library.getId(), loginUser.getUserId());
-        if (log != null) {
-            log.setReturnDate(LocalDateTime.now());
-            logRepository.save(log);
-            
-        }
-    }
-    return "redirect:/library";
+   
+    	return "redirect:/library";
     }
 }
             

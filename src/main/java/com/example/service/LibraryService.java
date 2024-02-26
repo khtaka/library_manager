@@ -55,6 +55,24 @@ public class LibraryService {
             logRepository.save(log);
         }
     }
+         // 更新処理
+         public void returnBook(Integer id, LoginUser loginUser) {
+             // 更新したいデータを取得する
+             Optional<Library> optionalLibrary = this.libraryRepository.findById(id);
+             Library library = optionalLibrary.get();
+
+         
+	         // 書籍情報のUSER_IDを0に設定して更新
+	         library.setUserId(0);
+	         libraryRepository.save(library);
+	         
+	         // Logsモデルを利用して更新処理を行う
+	         Log log = logRepository.findFirstByLibraryIdAndUserIdOrderByRentDateDesc(library.getId(), loginUser.getUserId());
+	         
+	             log.setReturnDate(LocalDateTime.now());
+	             logRepository.save(log);
+    
+    }
 }
 
 
