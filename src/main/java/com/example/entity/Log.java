@@ -40,6 +40,8 @@ public class Log {
 	@ManyToOne
 	@JoinColumn(insertable = false, updatable = false)
 	private Library library;
+	
+	
 
 	public Integer getId() {
 		return id;
@@ -90,6 +92,6 @@ public class Log {
 	}
 
 	public Library getLibrary() {
-		return library;
+		return this.library;
 	}
 }

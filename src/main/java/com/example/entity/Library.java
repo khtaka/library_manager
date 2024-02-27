@@ -58,7 +58,7 @@ public class Library {
 	}
 
 	public List<Log> getLibraries() {
-		return logs;
+		return this.logs;
 	}
 
 	
