@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.entity.Library;
+import com.example.entity.Log;
 import com.example.repository.LibraryRepository;
 import com.example.repository.LogRepository;
 import com.example.service.LibraryService;
@@ -73,6 +74,20 @@ public class LibraryController {
     
    
     	return "redirect:/library";
+    }
+    @GetMapping("/history")
+    public String history(Model model, @AuthenticationPrincipal LoginUser loginUser) {
+        // ログインユーザーのIDを取得
+        Integer userId = loginUser.getUserId();
+        
+        // ユーザーIDに紐づいた貸し出し履歴を取得
+        List<Log> borrowHistory = logRepository.findByUserId(userId);
+
+        // モデルに貸し出し履歴をセット
+        model.addAttribute("borrowHistory", borrowHistory);
+
+        // borrowHistory.html テンプレートを表示
+        return "library/borrowHistory";
     }
 }
             
